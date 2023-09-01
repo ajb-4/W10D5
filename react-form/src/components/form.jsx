@@ -25,23 +25,70 @@ function Form() {
         if (phoneNumber !== null && phoneNumber.length !== 10) {
             errors.push("Phone number should be properly formatted.")
         }
+
+        return errors;
     }
 
     const handleChange = field => {
         return (e) => {
             switch (field) {
-                case 'name': 
+            case 'name': 
                 setName(e.target.value);
                 break;
-                case 'email':
+            case 'email':
                 setEmail(e.target.value);
                 break;
-                case 'phoneNumber':
+            case 'phoneNumber':
                 setPhoneNumber(e.target.value);
-                break
+                break;
+            case 'phoneType':
+                setPhoneType(e.target.value);
+                break;
+            case 'staff':
+                setStaff(e.target.value);
+                break;
+            case 'bio':
+                setBio(e.target.value);
+                break;
+            case 'signUp':
+                setSignUp(e.target.value);
+                break;
             }
         }
     }
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        let errors = validate();
+
+        if (errors.length) {
+            setErrorMessages(errors);
+        } else {
+            let user = {
+                name,
+                email,
+                phoneNumber,
+                phoneType,
+                staff,
+                bio,
+                signUp
+            };
+            console.log(user);
+            setErrorMessages([]);
+        }
+    }
+
+    return (
+        <>
+            {showErrors()}
+            <form className='form' onSubmit={handleSubmit}>
+                <h2>Sign Up</h2>
+                <input type="text" placeholder='Name' onChange={handleChange('Name')} value={Name} />
+            </form>
+
+        </>
+    )
 
 }
 
