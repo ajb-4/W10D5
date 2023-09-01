@@ -79,12 +79,55 @@ function Form() {
         }
     }
 
+    const showErrors = () => {
+        if (!errorMessages.length) {
+            return null;
+        } else {
+            return (
+                <ul>
+                    {errorMessages.map(error => <li>{error}</li>)}
+                </ul>
+            )
+        }
+    }
+
     return (
         <>
             {showErrors()}
             <form className='form' onSubmit={handleSubmit}>
                 <h2>Sign Up</h2>
-                <input type="text" placeholder='Name' onChange={handleChange('Name')} value={Name} />
+                <label htmlFor=""> Name:
+                    <input type="text" placeholder='Name' onChange={handleChange('name')} value={name} />
+                </label>
+                <br />
+                <label htmlFor="">Email:
+                    <input type="text" placeholder='Email' onChange={handleChange('email')} value={email} />   
+                </label>
+                <br />
+                <label htmlFor="">Phone Number:
+                    <input type="tel" placeholder='Phone Number' onChange={handleChange('phoneNumber')} value={phoneNumber} />
+                </label>
+                <br />
+                <label htmlFor="">Phone Type:
+                    <select name="" id="">
+                        <option value="home">Home</option>
+                        <option value="work">Work</option>
+                        <option value="mobile">Mobile</option>
+                    </select>
+                </label>
+                <br />
+                <label htmlFor="">Staff:
+                    <label htmlFor="">Instructor
+                    <input type="radio"  name='staff' onClick={handleChange('staff')} value="Instructor" />
+                    </label>
+                    <label htmlFor="">Student
+                    <input type="radio"  name='staff' onClick={handleChange('staff')} value="Student" /> 
+                    </label> 
+                </label>
+                <br />
+                <label htmlFor="">Bio:
+                    <input type="text" placeholder="Bio" onChange={handleChange('bio')} value={bio} />
+                </label>
             </form>
 
         </>
